@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/EDIrASi/3/edit
+-->
+<head>
+  <meta name="description" content="Calculadora Simple con Funcion de Redondeo Moneda Mexicana, Solo deben Presionar Enter o Intro para ejecutar Operaciones Ejemplo: 2.5+2.2 = $5" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+
+<style id="jsbin-css">
+
+</style>
+</head>
+<body>
+  <input type="text" value="" id="resultado" style="height:35px;">
+<input class="btn" type="button" value="Limpiar" id="borrar">
+<script>
+$('#resultado').bind("enterKey", function (e) {
+    vlr = $(this).val();
+    atual = $("#resultado").val();
+       
+    $("#resultado").val(  redondear(eval(atual)) );
+});
+$('#resultado').keyup(function (e) {
+    if (e.keyCode == 13) {
+        $(this).trigger("enterKey");
+    }
+});
+$('#borrar').click(function () {
+    $('#resultado').val("");
+});
+
+function redondear(num)
+{ 
+  console.log("======================");  
+  console.log("Entro a redondear");
+	var original=parseFloat(num);
+    
+    console.log("original: " + original);
+
+    var result=Math.round(original*100)/100;
+     
+ console.log("result: " + result);
+     var residuo = 0.0;
+ console.log("residuo inicial:" + residuo);
+     residuo = result*100%100;
+
+     
+ console.log("residuo:" + residuo);
+  console.log("Residuo Para 100:" + ((-1)*(residuo-100)));
+ 
+   console.log("Residuo Para 50:" + ((-1)*(residuo-50)));
+ 
+ var residio100 = ((-1)*(residuo-100)) ;
+ var residio50 = ((-1)*(residuo-50)) ;
+ 
+ console.log("Residuo Para 100:" + residio100 );
+ 
+ console.log("Residuo Para 50:" + residio50 );
+
+ 
+     if (residuo>=0&residuo<10){console.log("Residuo mayor de 0"); result = result - residuo/100;}
+     if (residuo>=10&residuo<20){console.log("Residuo mayor de 10"); result = result - residuo/100;}
+	 if (residuo>=20&residuo<30){console.log("Residuo mayor de 20"); result = result + residio50/100;}
+	 if (residuo>=30&residuo<40){console.log("Residuo mayor de 30");result = result + residio50/100;}
+	 if (residuo>=40&residuo<50){console.log("Residuo mayor de 40");result = result + residio50/100;}
+	 if (residuo>=50&residuo<60){console.log("Residuo mayor de 50");result = result + residio50/100;}
+	 if (residuo>=60&residuo<70){console.log("Residuo mayor de 60");result = result + residio100/100;}
+	 if (residuo>=70&residuo<80){console.log("Residuo mayor de 70");result = result + residio100/100;}
+	 if (residuo>=80&residuo<90){console.log("Residuo mayor de 80");result = result + residio100/100;}
+	 if (residuo>=90&residuo<=100){console.log("Residuo mayor de 90");result = result + residio100/100;}
+
+    return result;
+}
+</script>
+</body>
+</html>
